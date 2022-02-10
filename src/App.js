@@ -21,29 +21,32 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.handleLoginStatusChange();
-  }
-
-  handleHamburgerChange() {
-    switch (this.state.isExpanded) {
-      case true:
+  handleHamburgerChange(action) {
+    switch (action) {
+      case "toggle": 
+      this.setState({
+        isExpanded: !this.state.isExpanded
+      })
+      break;
+      case "close": 
       this.setState({
         isExpanded: false
       })
       break;
-      case false:
+      case "open": 
       this.setState({
         isExpanded: true
       })
-      break;
     }
-    
+  }
+
+  componentDidMount() {
+    this.handleLoginStatusChange();
   }
 
   handleLoginStatusChange() {
     this.setState({
-      loggedIn: !!localStorage.getItem("twitter_clone_token")
+      loggedIn: !!localStorage.getItem("twitter_clone_token"),
     });
   }
 
@@ -51,17 +54,36 @@ class App extends React.Component {
     return (
       <HashRouter>
         <div>
-          <Navigation 
-          loggedIn={this.state.loggedIn}
-          isExpanded={this.state.isExpanded}
-          onHamburgerChange={this.handleHamburgerChange.bind(this)}  />
+          <Navigation
+            loggedIn={this.state.loggedIn}
+            isExpanded={this.state.isExpanded}
+            onHamburgerChange={this.handleHamburgerChange.bind(this)}
+          />
 
           <Switch>
             <Route path="/" exact component={Feed} />
             <Route path="/user/:username" component={UserFeed} />
             <Route path="/signup" component={Signup} />
-            <Route path="/login" render={(routeProps) => <Login {...routeProps} onHamburgerChange={this.handleHamburgerChange.bind(this)} onLoginChange={this.handleLoginStatusChange.bind(this)} />} />
-            <Route path="/logout" render={(routeProps) => <Logout {...routeProps} onHamburgerChange={this.handleHamburgerChange.bind(this)} onLoginChange={this.handleLoginStatusChange.bind(this)} />} />
+            <Route
+              path="/login"
+              render={(routeProps) => (
+                <Login
+                  {...routeProps}
+                  onHamburgerChange={this.handleHamburgerChange.bind(this)}
+                  onLoginChange={this.handleLoginStatusChange.bind(this)}
+                />
+              )}
+            />
+            <Route
+              path="/logout"
+              render={(routeProps) => (
+                <Logout
+                  {...routeProps}
+                  onHamburgerChange={this.handleHamburgerChange.bind(this)}
+                  onLoginChange={this.handleLoginStatusChange.bind(this)}
+                />
+              )}
+            />
           </Switch>
         </div>
       </HashRouter>

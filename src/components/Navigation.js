@@ -5,9 +5,8 @@ import { HashRouter, Switch, Route } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 class Navigation extends React.Component {
-
-  handleHamburgerClick() {
-    this.props.onHamburgerChange();
+  handleHamburgerClick(action) {
+    this.props.onHamburgerChange(action);
   }
 
   render() {
@@ -16,14 +15,18 @@ class Navigation extends React.Component {
         return (
           <nav className="navbar">
             <div className="header-items">
-              <a href="#" className="logo">
+              <Link
+                to="/"
+                className="logo"
+                onClick={() => this.handleHamburgerClick('close')}
+              >
                 SHITTER.
-              </a>
+              </Link>
               <svg
                 className={
                   !this.props.isExpanded ? "ham ham7" : "ham ham7 active"
                 }
-                onClick={this.handleHamburgerClick.bind(this)}
+                onClick={() => this.handleHamburgerClick('toggle')}
                 viewBox="0 0 100 100"
                 width="80"
                 // onclick={this.classList.toggle('active')}
@@ -46,7 +49,7 @@ class Navigation extends React.Component {
               }
             >
               <li>
-                  <Link to="/signup">Sign Up</Link>
+                <Link to="/signup">Sign Up</Link>
               </li>
             </ul>
           </nav>
@@ -56,14 +59,18 @@ class Navigation extends React.Component {
         return (
           <nav className="navbar">
             <div className="header-items">
-              <a href="#" className="logo">
+              <Link
+                to="/"
+                className="logo"
+                onClick={() => this.handleHamburgerClick('close')}
+              >
                 SHITTER.
-              </a>
+              </Link>
               <svg
                 className={
                   !this.props.isExpanded ? "ham ham7" : "ham ham7 active"
                 }
-                onClick={this.handleHamburgerClick.bind(this)}
+                onClick={() => this.handleHamburgerClick('toggle')}
                 viewBox="0 0 100 100"
                 width="80"
                 // onclick={this.classList.toggle('active')}
@@ -86,7 +93,11 @@ class Navigation extends React.Component {
               }
             >
               <li>
-                <Link className="nav-links" to="/">
+                <Link
+                  className="nav-links"
+                  to="/"
+                  onClick={() => this.handleHamburgerClick('close')}
+                >
                   Home
                 </Link>
               </li>

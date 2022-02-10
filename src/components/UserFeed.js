@@ -22,7 +22,6 @@ class UserFeed extends React.Component {
     const token = localStorage.getItem('twitter_clone_token');
 
     const payload = jwtDecode(token);
-    console.log(payload);
 
     this.setState({
       payload
