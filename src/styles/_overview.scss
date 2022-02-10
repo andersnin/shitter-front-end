@@ -1,0 +1,28 @@
+.post-container {
+    display: flex;
+
+  .user-image {
+    img {
+      width: 50px;
+      height: 50px;
+      border: 1px solid white;
+      border-radius: 50%;
+    }
+  }
+
+  .post-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+    width: 100%;
+
+    .user-info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    p {
+        margin: 0;
+    }
+  }
+}

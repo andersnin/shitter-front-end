@@ -1,0 +1,92 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 18px;
+  background-image: linear-gradient(260deg, #6d3109 0%, #8f6244 100%);
+
+  .header-items {
+      display: flex;
+      justify-content: space-between;
+  }
+}
+
+
+.main-nav {
+  list-style-type: none;
+  padding: 0;
+
+  li {
+    text-align: center;
+    margin: 15px auto;
+  }
+}
+.nav-links,
+.logo {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.logo {
+  display: block;
+  font-size: 22px;
+  align-self: center;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.main-nav {
+  list-style-type: none;
+  display: none;
+  margin: 0;
+}
+
+.active {
+    display: block;
+  }
+
+// Hamburger Icon
+
+.ham {
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 400ms;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.hamRotate.active {
+  transform: rotate(45deg);
+}
+.hamRotate180.active {
+  transform: rotate(180deg);
+}
+.line {
+  fill: none;
+  transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+  stroke: rgba(255, 255, 255, 0.7);
+  stroke-width: 5.5;
+  stroke-linecap: round;
+}
+
+.ham7 .top {
+  stroke-dasharray: 40 82;
+}
+.ham7 .middle {
+  stroke-dasharray: 40 111;
+}
+.ham7 .bottom {
+  stroke-dasharray: 40 161;
+}
+.ham7.active .top {
+  stroke-dasharray: 17 82;
+  stroke-dashoffset: -62px;
+}
+.ham7.active .middle {
+  stroke-dashoffset: 23px;
+}
+.ham7.active .bottom {
+  stroke-dashoffset: -83px;
+}
