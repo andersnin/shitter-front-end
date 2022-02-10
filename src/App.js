@@ -6,6 +6,7 @@ import { HashRouter, Switch, Route } from "react-router-dom";
 // Components
 import Feed from "./components/Feed";
 import Login from "./components/Login";
+import Edit from "./components/Edit";
 import Signup from "./components/Signup";
 import Logout from "./components/Logout";
 import UserFeed from "./components/UserFeed";
@@ -64,6 +65,7 @@ class App extends React.Component {
             <Route path="/" exact component={Feed} />
             <Route path="/user/:username" component={UserFeed} />
             <Route path="/signup" component={Signup} />
+            <Route path="/edit" component={Edit} />
             <Route
               path="/login"
               render={(routeProps) => (

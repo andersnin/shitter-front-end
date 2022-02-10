@@ -102,6 +102,9 @@ class Navigation extends React.Component {
                 </Link>
               </li>
               <li>
+                <Link className="nav-links" to="/edit">Edit User</Link>
+              </li>
+              <li>
                 <Link className="nav-links" to="/logout">
                   Logout
                 </Link>

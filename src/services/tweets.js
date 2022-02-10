@@ -36,3 +36,8 @@ export function signupNewUser(name, username, password, img_url, bio) {
   })
   .then((res) => res.json());
 }
+
+export function getUserByUsername(username) {
+  return fetch(`${API_URL}/edit/${username}`)
+  .then((res) => res.json());
+}

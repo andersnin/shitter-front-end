@@ -40,7 +40,6 @@ class Login extends React.Component {
       this.props.onLoginChange();
 
       // 3. Redirect back to feed
-      this.props.onHamburgerToggle();
       history.replace("/");
     } catch (error) {
       console.log(error);
