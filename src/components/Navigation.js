@@ -5,33 +5,9 @@ import { HashRouter, Switch, Route } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 class Navigation extends React.Component {
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          hamburgerActive: false,
-        };
-      }
-
-      componentDidMount() {
-          this.setState({
-              hamburgerActive: false,
-          })
-      }
 
   handleHamburgerClick() {
-    switch (this.state.hamburgerActive) {
-      case false:
-        this.setState({
-          hamburgerActive: true,
-        });
-        break;
-      case true:
-        this.setState({
-          hamburgerActive: false,
-        });
-        break;
-    }
+    this.props.onHamburgerChange();
   }
 
   render() {
@@ -45,7 +21,7 @@ class Navigation extends React.Component {
               </a>
               <svg
                 className={
-                  !this.state.hamburgerActive ? "ham ham7" : "ham ham7 active"
+                  !this.props.isExpanded ? "ham ham7" : "ham ham7 active"
                 }
                 onClick={this.handleHamburgerClick.bind(this)}
                 viewBox="0 0 100 100"
@@ -66,11 +42,11 @@ class Navigation extends React.Component {
 
             <ul
               className={
-                !this.state.hamburgerActive ? "main-nav" : "main-nav active"
+                !this.props.isExpanded ? "main-nav" : "main-nav active"
               }
             >
               <li>
-                  <a className="nav-links" href="#">Sign Up</a>
+                  <Link to="/signup">Sign Up</Link>
               </li>
             </ul>
           </nav>
@@ -85,7 +61,7 @@ class Navigation extends React.Component {
               </a>
               <svg
                 className={
-                  !this.state.hamburgerActive ? "ham ham7" : "ham ham7 active"
+                  !this.props.isExpanded ? "ham ham7" : "ham ham7 active"
                 }
                 onClick={this.handleHamburgerClick.bind(this)}
                 viewBox="0 0 100 100"
@@ -106,7 +82,7 @@ class Navigation extends React.Component {
 
             <ul
               className={
-                !this.state.hamburgerActive ? "main-nav" : "main-nav active"
+                !this.props.isExpanded ? "main-nav" : "main-nav active"
               }
             >
               <li>

@@ -9,6 +9,8 @@ class Logout extends React.Component {
     });
 
     localStorage.removeItem('twitter_clone_token');
+    this.props.onLoginChange();
+    this.props.onHamburgerChange();
     history.replace('/');
   }
 

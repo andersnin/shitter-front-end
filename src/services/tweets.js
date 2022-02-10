@@ -25,3 +25,14 @@ export function postTweet(message) {
   })
   .then((res) => res.json());
 }
+
+export function signupNewUser(name, username, password, img_url, bio) {
+  return fetch(`${API_URL}/signup`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name, username, password, img_url, bio })
+  })
+  .then((res) => res.json());
+}

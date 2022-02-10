@@ -36,7 +36,11 @@ class Login extends React.Component {
       // 2. Store token in local storage
       localStorage.setItem("twitter_clone_token", token);
 
+      // 2.5 Let App know that login status might have changed
+      this.props.onLoginChange();
+
       // 3. Redirect back to feed
+      this.props.onHamburgerChange();
       history.replace("/");
     } catch (error) {
       console.log(error);

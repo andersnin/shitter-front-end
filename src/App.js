@@ -5,9 +5,10 @@ import { HashRouter, Switch, Route } from "react-router-dom";
 
 // Components
 import Feed from "./components/Feed";
-import UserFeed from "./components/UserFeed";
 import Login from "./components/Login";
+import Signup from "./components/Signup";
 import Logout from "./components/Logout";
+import UserFeed from "./components/UserFeed";
 import Navigation from "./components/Navigation";
 
 class App extends React.Component {
@@ -16,31 +17,51 @@ class App extends React.Component {
 
     this.state = {
       loggedIn: false,
+      isExpanded: false,
     };
   }
 
   componentDidMount() {
-    const token = !!localStorage.getItem("twitter_clone_token");
-    console.log(token);
+    this.handleLoginStatusChange();
+  }
 
-    if (token) {
+  handleHamburgerChange() {
+    switch (this.state.isExpanded) {
+      case true:
       this.setState({
-        loggedIn: true,
-      });
+        isExpanded: false
+      })
+      break;
+      case false:
+      this.setState({
+        isExpanded: true
+      })
+      break;
     }
+    
+  }
+
+  handleLoginStatusChange() {
+    this.setState({
+      loggedIn: !!localStorage.getItem("twitter_clone_token")
+    });
   }
 
   render() {
     return (
       <HashRouter>
         <div>
-          <Navigation loggedIn={this.state.loggedIn} />
+          <Navigation 
+          loggedIn={this.state.loggedIn}
+          isExpanded={this.state.isExpanded}
+          onHamburgerChange={this.handleHamburgerChange.bind(this)}  />
 
           <Switch>
             <Route path="/" exact component={Feed} />
             <Route path="/user/:username" component={UserFeed} />
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" render={(routeProps) => <Login {...routeProps} onHamburgerChange={this.handleHamburgerChange.bind(this)} onLoginChange={this.handleLoginStatusChange.bind(this)} />} />
+            <Route path="/logout" render={(routeProps) => <Logout {...routeProps} onHamburgerChange={this.handleHamburgerChange.bind(this)} onLoginChange={this.handleLoginStatusChange.bind(this)} />} />
           </Switch>
         </div>
       </HashRouter>
