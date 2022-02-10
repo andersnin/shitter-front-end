@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getTweets, postTweet } from '../services/tweets';
-import jwtDecode from 'jwt-decode';
+import { getTweets, postTweet } from "../services/tweets";
+import jwtDecode from "jwt-decode";
 const { DateTime } = require("luxon");
 
 class Feed extends React.Component {
@@ -12,25 +12,24 @@ class Feed extends React.Component {
       tweets: [],
       isLoading: false,
       error: null,
-      message: '',
+      message: "",
       payload: {},
-    }
+    };
   }
 
   async componentDidMount() {
     const { history } = this.props;
-    const token = localStorage.getItem('twitter_clone_token');
+    const token = localStorage.getItem("twitter_clone_token");
 
     if (!token) {
-      history.replace('/login');
+      history.replace("/login");
       return;
     }
 
     const payload = jwtDecode(token);
-    console.log(payload);
 
     this.setState({
-      payload
+      payload,
     });
 
     await this.populateTweets();
@@ -59,12 +58,12 @@ class Feed extends React.Component {
 
   handleInputChange(field, event) {
     this.setState({
-      [field]: event.target.value
+      [field]: event.target.value,
     });
   }
 
   render() {
-    const { tweets, isLoading, error } = this.state;
+    const { tweets, isLoading, error, message } = this.state;
 
     if (error) {
       return (
@@ -89,7 +88,7 @@ class Feed extends React.Component {
       return (
         <div className="post-container" key={tweet.id}>
           <div className="user-image">
-            <Link to={`/${tweet.username}`}>
+            <Link to={`/user/${tweet.username}`}>
               <img
                 src={
                   !tweet.img_url
@@ -104,7 +103,7 @@ class Feed extends React.Component {
             <div className="user-info">
               <p>
                 <strong>{tweet.name}</strong>{" "}
-                <Link to={`/${tweet.username}`}>(@{tweet.username})</Link>
+                <Link to={`/user/${tweet.username}`}>(@{tweet.username})</Link>
               </p>
               <p>{convertedTime}</p>
             </div>
@@ -118,6 +117,21 @@ class Feed extends React.Component {
 
     return (
       <article>
+        <div className="message-box">
+          <input
+            type="text"
+            placeholder="Post shit."
+            value={message}
+            onChange={this.handleInputChange.bind(this, "message")}
+          />
+          <button
+            className="button-24"
+            role="button"
+            onClick={this.handleSubmitTweet.bind(this)}
+          >
+            Post
+          </button>
+        </div>
         {shits.length ? <div>{shits}</div> : <p>No shit to show!</p>}
       </article>
     );

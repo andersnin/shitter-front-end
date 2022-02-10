@@ -12,11 +12,22 @@ class UserFeed extends React.Component {
       tweets: [],
       isLoading: false,
       error: null,
+      payload: {},
     };
   }
 
   async componentDidMount() {
     const { username } = this.props.match.params;
+
+    const token = localStorage.getItem('twitter_clone_token');
+
+    const payload = jwtDecode(token);
+    console.log(payload);
+
+    this.setState({
+      payload
+    });
+
 
     try {
       this.setState({ isLoading: true });
@@ -26,6 +37,7 @@ class UserFeed extends React.Component {
       this.setState({ error });
     }
   }
+
 
   render() {
     const { tweets, isLoading, error } = this.state;

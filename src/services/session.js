@@ -1,4 +1,4 @@
-const API_URL = process.env.API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 export async function getLoginToken({ username, password }) {
   return fetch(`${API_URL}/login`, {
@@ -8,5 +8,5 @@ export async function getLoginToken({ username, password }) {
     },
     body: JSON.stringify({ username, password }),
   })
-  .then((res) => res.json()).then((json) => console.log(json));
+  .then((res) => res.json());
 }

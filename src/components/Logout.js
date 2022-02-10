@@ -5,7 +5,7 @@ class Logout extends React.Component {
     const { history } = this.props;
 
     await new Promise((resolve) => {
-      setTimeout(resolve, 3000);
+      setTimeout(resolve, 1000);
     });
 
     localStorage.removeItem('twitter_clone_token');
