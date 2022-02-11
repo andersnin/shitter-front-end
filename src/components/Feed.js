@@ -105,9 +105,9 @@ class Feed extends React.Component {
                 <strong>{tweet.name}</strong>{" "}
                 <Link to={`/user/${tweet.username}`}>(@{tweet.username})</Link>
               </p>
-              <p>{convertedTime}</p>
+              <p className="timestamp">{convertedTime}</p>
             </div>
-            <div className="">
+            <div className="user-message">
               <p>{tweet.message}</p>
             </div>
           </div>

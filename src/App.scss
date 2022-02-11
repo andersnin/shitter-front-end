@@ -5,6 +5,7 @@
 body {
   box-sizing: border-box;
   min-height: 100vh;
+  background-color: black;
 }
 
 article {
@@ -13,7 +14,11 @@ article {
 
 a {
   text-decoration: none;
-  color: black;
+  color: white;
+}
+
+p {
+  color: white;
 }
 
 // .App {
