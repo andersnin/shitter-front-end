@@ -60,6 +60,9 @@ class Feed extends React.Component {
 
     await postTweet(message);
     await this.populateTweets();
+    this.setState({
+      message: "",
+    })
   }
 
   handleInputChange(field, event) {
