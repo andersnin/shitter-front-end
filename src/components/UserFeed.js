@@ -87,7 +87,7 @@ class UserFeed extends React.Component {
                 </p>
                 <p>{convertedTime}</p>
               </div>
-              <div className="">
+              <div className="user-message">
                 <p>{tweet.message}</p>
               </div>
             </div>
@@ -113,22 +113,31 @@ class UserFeed extends React.Component {
                 </p>
                 <p className="timestamp">{convertedTime}</p>
               </div>
-              <div className="">
+              <div className="user-message">
                 <p>{tweet.message}</p>
               </div>
             </div>
           </div>
-        )
+        );
       }
     });
 
-    return (
-      <article>
-        <div className="user-info-header">
-        </div>
-        {shits.length ? <div>{shits}</div> : <p>No shit to show!</p>}
-      </article>
-    );
+    if (this.state.isUser) {
+      return (
+        <article>
+          <div><h2>Your posts:</h2></div>
+          <div className="user-info-header"></div>
+          {shits.length ? <div>{shits}</div> : <p>No shit to show!</p>}
+        </article>
+      );
+    } else {
+      return (
+        <article>
+          <div className="user-info-header"></div>
+          {shits.length ? <div>{shits}</div> : <p>No shit to show!</p>}
+        </article>
+      );
+    }
   }
 }
 

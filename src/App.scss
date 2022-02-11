@@ -1,6 +1,6 @@
-@use './styles/_navbar.scss';
-@use './styles/_overview.scss';
-@use './styles/_login.scss';
+@use "./styles/_navbar.scss";
+@use "./styles/_overview.scss";
+@use "./styles/_login.scss";
 
 body {
   box-sizing: border-box;
@@ -18,6 +18,15 @@ a {
 }
 
 p {
+  color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: white;
 }
 
