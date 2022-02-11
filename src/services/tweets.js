@@ -38,7 +38,7 @@ export function signupNewUser(name, username, password, img_url, bio) {
 }
 
 export function editUser(name, username, password, img_url, bio) {
-  return fetch(`${API_URL}/edit/${username}`, {
+  return fetch(`${API_URL}/edit`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

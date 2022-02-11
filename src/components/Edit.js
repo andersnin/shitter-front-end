@@ -55,14 +55,6 @@ class Edit extends React.Component {
           />
         </div>
         <div className="signup-input">
-          <label>Username:</label>
-          <input
-            type="text"
-            value={this.state.username}
-            onChange={this.handleInputChange.bind(this, "username")}
-          />
-        </div>
-        <div className="signup-input">
           <label>Password:</label>
           <input
             type="password"
