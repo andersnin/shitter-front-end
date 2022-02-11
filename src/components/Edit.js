@@ -1,5 +1,5 @@
 import React from "react";
-import { signupNewUser, getUserByUsername } from "../services/tweets";
+import { editUser, getUserByUsername } from "../services/tweets";
 import jwtDecode from "jwt-decode";
 
 class Edit extends React.Component {
@@ -38,7 +38,7 @@ class Edit extends React.Component {
     const { name, username, password, img_url, bio } = this.state;
     const { history } = this.props;
 
-    await signupNewUser(name, username, password, img_url, bio);
+    await editUser(name, username, password, img_url, bio);
     history.replace("/");
   }
 

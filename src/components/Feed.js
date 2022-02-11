@@ -45,6 +45,12 @@ class Feed extends React.Component {
     }
   }
 
+  handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+    this.handleSubmitTweet();
+    }
+  }
+
   async handleSubmitTweet() {
     const { message } = this.state;
 
@@ -116,24 +122,27 @@ class Feed extends React.Component {
     });
 
     return (
-      <article>
+      <div>
         <div className="message-box">
           <input
             type="text"
             placeholder="Post shit."
             value={message}
             onChange={this.handleInputChange.bind(this, "message")}
+            onKeyDown={this.handleKeyDown.bind(this)}
           />
           <button
-            className="button-24"
+            className="post-message-button"
             role="button"
             onClick={this.handleSubmitTweet.bind(this)}
           >
             Post
           </button>
         </div>
-        {shits.length ? <div>{shits}</div> : <p>No shit to show!</p>}
-      </article>
+        <article>
+          {shits.length ? <div>{shits}</div> : <p>No shit to show!</p>}
+        </article>
+      </div>
     );
   }
 }
